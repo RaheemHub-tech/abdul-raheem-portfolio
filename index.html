@@ -38,6 +38,10 @@
       color: inherit;
     }
 
+    button {
+      font: inherit;
+    }
+
     .hero {
       min-height: 92vh;
       display: grid;
@@ -274,6 +278,9 @@
 
     .info-card {
       min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
       padding: 22px;
       border: 1px solid var(--line);
       border-radius: 8px;
@@ -283,6 +290,28 @@
     .info-card p {
       margin-bottom: 0;
       color: var(--muted);
+      flex-grow: 1;
+    }
+
+    .popup-button {
+      margin-top: 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      padding: 9px 12px;
+      border: 1px solid var(--ink);
+      border-radius: 8px;
+      background: var(--panel);
+      color: var(--ink);
+      cursor: pointer;
+      font-weight: 800;
+    }
+
+    .popup-button:hover,
+    .popup-button:focus-visible {
+      background: var(--ink);
+      color: #ffffff;
     }
 
     .tag {
@@ -376,6 +405,63 @@
     .timeline-item p {
       margin-bottom: 0;
       color: var(--muted);
+    }
+
+    .popup-dialog {
+      width: min(560px, calc(100% - 32px));
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 0;
+      background: var(--panel);
+      color: var(--ink);
+      box-shadow: 0 24px 80px rgba(21, 21, 21, 0.28);
+    }
+
+    .popup-dialog::backdrop {
+      background: rgba(21, 21, 21, 0.56);
+    }
+
+    .popup-content {
+      padding: 28px;
+    }
+
+    .popup-kicker {
+      display: inline-flex;
+      margin-bottom: 12px;
+      padding: 5px 9px;
+      border-radius: 8px;
+      background: var(--teal);
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .popup-content h2 {
+      margin-bottom: 14px;
+      font-size: 28px;
+    }
+
+    .popup-content p {
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .popup-actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 24px;
+    }
+
+    .close-button {
+      min-height: 42px;
+      padding: 9px 14px;
+      border: 1px solid var(--ink);
+      border-radius: 8px;
+      background: var(--ink);
+      color: #ffffff;
+      cursor: pointer;
+      font-weight: 800;
     }
 
     .footer {
@@ -559,21 +645,25 @@
             <span class="tag coral">Cooking</span>
             <h3>Creative Practice</h3>
             <p>I enjoy cooking because it lets me experiment, follow steps, and improve through practice.</p>
+            <button class="popup-button" type="button" data-popup="cooking">Open Pop-Up</button>
           </article>
           <article class="info-card">
             <span class="tag green">Badminton</span>
             <h3>Speed and Control</h3>
             <p>Badminton helps me work on timing, movement, focus, and quick decision-making.</p>
+            <button class="popup-button" type="button" data-popup="badminton">Open Pop-Up</button>
           </article>
           <article class="info-card">
             <span class="tag blue">Cricket</span>
             <h3>Batsman</h3>
             <p>In cricket, I enjoy batting and learning how to stay patient, read the ball, and play better shots.</p>
+            <button class="popup-button" type="button" data-popup="cricket">Open Pop-Up</button>
           </article>
           <article class="info-card">
             <span class="tag teal">Science</span>
             <h3>Physics and Chemistry</h3>
             <p>These subjects make me curious about energy, matter, machines, reactions, and the world around me.</p>
+            <button class="popup-button" type="button" data-popup="science">Open Pop-Up</button>
           </article>
         </div>
       </div>
@@ -589,23 +679,118 @@
         <div class="timeline">
           <article class="timeline-item">
             <strong>Mechanical Engineering</strong>
-            <p>I am interested in how machines are designed, built, tested, and improved.</p>
+            <div>
+              <p>I am interested in how machines are designed, built, tested, and improved.</p>
+              <button class="popup-button" type="button" data-popup="mechanical">View Goal</button>
+            </div>
           </article>
           <article class="timeline-item">
             <strong>Robotics Engineering</strong>
-            <p>Robotics connects mechanics, electronics, programming, and problem solving in a practical way.</p>
+            <div>
+              <p>Robotics connects mechanics, electronics, programming, and problem solving in a practical way.</p>
+              <button class="popup-button" type="button" data-popup="robotics">View Goal</button>
+            </div>
           </article>
           <article class="timeline-item">
             <strong>Artificial Intelligence</strong>
-            <p>I have started learning a little about AI from my dad, and I want to keep exploring how it can support future engineering projects.</p>
+            <div>
+              <p>I have started learning a little about AI from my dad, and I want to keep exploring how it can support future engineering projects.</p>
+              <button class="popup-button" type="button" data-popup="ai">View Goal</button>
+            </div>
           </article>
         </div>
       </div>
     </section>
   </main>
 
+  <dialog class="popup-dialog" id="popup-dialog" aria-labelledby="popup-title">
+    <div class="popup-content">
+      <span class="popup-kicker" id="popup-kicker">Portfolio</span>
+      <h2 id="popup-title">Title</h2>
+      <p id="popup-text">Details will appear here.</p>
+      <div class="popup-actions">
+        <button class="close-button" type="button" id="close-popup">Close</button>
+      </div>
+    </div>
+  </dialog>
+
   <footer class="footer">
     <p>Built by Abdul-Raheem with HTML, CSS, Git, GitHub, and GitHub Pages.</p>
   </footer>
+
+  <script>
+    const popupDetails = {
+      cooking: {
+        kicker: "Cooking",
+        title: "Creative Practice",
+        text: "Cooking helps me learn patience, planning, and creativity. I enjoy trying ideas, following steps, and improving the result each time."
+      },
+      badminton: {
+        kicker: "Badminton",
+        title: "Speed and Focus",
+        text: "Badminton is one of my favorite sports because it needs fast reactions, control, balance, and smart movement around the court."
+      },
+      cricket: {
+        kicker: "Cricket",
+        title: "Batsman Mindset",
+        text: "In cricket, I like batting. I want to keep improving my timing, shot selection, patience, and confidence at the crease."
+      },
+      science: {
+        kicker: "Science",
+        title: "Physics and Chemistry",
+        text: "Physics and Chemistry are my favorite subjects because they explain machines, energy, reactions, materials, and many things used in engineering."
+      },
+      mechanical: {
+        kicker: "Future Goal",
+        title: "Mechanical Engineering",
+        text: "Mechanical engineering interests me because it is about designing machines and understanding how real parts move, connect, and work together."
+      },
+      robotics: {
+        kicker: "Future Goal",
+        title: "Robotics Engineering",
+        text: "Robotics is exciting because it combines machines, sensors, coding, electronics, and problem solving to build systems that can do useful tasks."
+      },
+      ai: {
+        kicker: "Future Goal",
+        title: "Artificial Intelligence",
+        text: "I have started learning a little about AI from my dad. I want to keep exploring it and understand how it can help engineering projects in the future."
+      }
+    };
+
+    const dialog = document.querySelector("#popup-dialog");
+    const popupKicker = document.querySelector("#popup-kicker");
+    const popupTitle = document.querySelector("#popup-title");
+    const popupText = document.querySelector("#popup-text");
+    const closePopup = document.querySelector("#close-popup");
+
+    document.querySelectorAll("[data-popup]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const details = popupDetails[button.dataset.popup];
+
+        if (!details) {
+          return;
+        }
+
+        popupKicker.textContent = details.kicker;
+        popupTitle.textContent = details.title;
+        popupText.textContent = details.text;
+        if (typeof dialog.showModal === "function") {
+          dialog.showModal();
+        } else {
+          dialog.setAttribute("open", "");
+        }
+      });
+    });
+
+    closePopup.addEventListener("click", () => {
+      dialog.close();
+    });
+
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) {
+        dialog.close();
+      }
+    });
+  </script>
 </body>
 </html>
