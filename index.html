@@ -1,93 +1,611 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Abdul Rahim Portfolio</title>
+  <title>Abdul-Raheem | Student Portfolio</title>
   <style>
+    :root {
+      --ink: #151515;
+      --muted: #555f69;
+      --paper: #fbfbf8;
+      --panel: #ffffff;
+      --line: #d8ddd3;
+      --teal: #0f766e;
+      --green: #2f855a;
+      --coral: #d94841;
+      --amber: #b7791f;
+      --blue: #2b6cb0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0f172a;
-      color: #f8fafc;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: var(--paper);
+      color: var(--ink);
       line-height: 1.6;
     }
-    header {
-      min-height: 100vh;
+
+    a {
+      color: inherit;
+    }
+
+    .hero {
+      min-height: 92vh;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      padding: 24px;
+      border-bottom: 1px solid var(--line);
+      background:
+        linear-gradient(90deg, rgba(15, 118, 110, 0.09) 0 25%, transparent 25% 100%),
+        var(--paper);
+    }
+
+    .topbar {
+      width: min(1120px, 100%);
+      margin: 0 auto;
       display: flex;
       align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 40px 20px;
+      justify-content: space-between;
+      gap: 18px;
     }
-    .card {
-      max-width: 760px;
-      background: #111827;
-      border: 1px solid #334155;
-      border-radius: 24px;
-      padding: 40px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+
+    .brand {
+      font-weight: 800;
+      text-decoration: none;
+      font-size: 18px;
     }
-    h1 {
-      font-size: 48px;
-      margin-bottom: 10px;
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 10px;
     }
-    h2 {
-      color: #38bdf8;
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 15px;
+      padding: 8px 10px;
+      border-radius: 8px;
+    }
+
+    .nav-links a:hover {
+      color: var(--ink);
+      background: rgba(21, 21, 21, 0.06);
+    }
+
+    .hero-content {
+      width: min(1120px, 100%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 0.9fr;
+      align-items: center;
+      gap: 48px;
+      padding: 64px 0 28px;
+    }
+
+    .eyebrow {
+      margin: 0 0 14px;
+      color: var(--teal);
+      font-size: 15px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
       margin-top: 0;
     }
-    p {
-      font-size: 18px;
-      color: #cbd5e1;
+
+    h1 {
+      margin-bottom: 18px;
+      font-size: 64px;
+      line-height: 1.02;
     }
+
+    h2 {
+      font-size: 34px;
+      line-height: 1.15;
+      margin-bottom: 18px;
+    }
+
+    h3 {
+      font-size: 19px;
+      margin-bottom: 8px;
+    }
+
+    .lead {
+      max-width: 680px;
+      color: var(--muted);
+      font-size: 21px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
     .button {
-      display: inline-block;
-      margin-top: 24px;
-      padding: 14px 22px;
-      background: #38bdf8;
-      color: #020617;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 12px 18px;
+      border: 1px solid var(--ink);
+      border-radius: 8px;
+      background: var(--ink);
+      color: #ffffff;
       text-decoration: none;
-      border-radius: 999px;
-      font-weight: bold;
+      font-weight: 800;
     }
-    section {
-      padding: 60px 20px;
-      max-width: 900px;
-      margin: auto;
+
+    .button.secondary {
+      background: transparent;
+      color: var(--ink);
     }
-    .box {
-      background: #1e293b;
-      border-radius: 18px;
-      padding: 24px;
-      margin-top: 20px;
+
+    .hero-visual {
+      min-height: 470px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      padding: 16px;
+      box-shadow: 0 24px 70px rgba(40, 50, 40, 0.12);
+    }
+
+    .visual-grid {
+      height: 100%;
+      min-height: 438px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-rows: repeat(3, minmax(128px, 1fr));
+      gap: 12px;
+    }
+
+    .visual-tile {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+      overflow: hidden;
+      border-radius: 8px;
+      padding: 18px;
+      color: #ffffff;
+    }
+
+    .visual-tile::after {
+      content: "";
+      position: absolute;
+      right: -36px;
+      bottom: -36px;
+      width: 96px;
+      height: 96px;
+      border: 16px solid rgba(255, 255, 255, 0.25);
+      border-radius: 50%;
+    }
+
+    .visual-tile span,
+    .visual-tile strong {
+      position: relative;
+      z-index: 1;
+    }
+
+    .visual-tile span {
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .visual-tile strong {
+      font-size: 22px;
+      line-height: 1.15;
+    }
+
+    .tile-large {
+      grid-row: span 2;
+      background: var(--teal);
+    }
+
+    .tile-coral {
+      background: var(--coral);
+    }
+
+    .tile-blue {
+      background: var(--blue);
+    }
+
+    .tile-green {
+      background: var(--green);
+    }
+
+    .tile-amber {
+      background: var(--amber);
+    }
+
+    main {
+      background: var(--paper);
+    }
+
+    .section {
+      padding: 76px 24px;
+    }
+
+    .section.alt {
+      background: #ffffff;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-inner {
+      width: min(1120px, 100%);
+      margin: 0 auto;
+    }
+
+    .section-heading {
+      max-width: 740px;
+      margin-bottom: 30px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .info-card {
+      min-height: 180px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+    }
+
+    .info-card p {
+      margin-bottom: 0;
+      color: var(--muted);
+    }
+
+    .tag {
+      display: inline-flex;
+      margin-bottom: 18px;
+      color: #ffffff;
+      border-radius: 8px;
+      padding: 5px 9px;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .tag.teal {
+      background: var(--teal);
+    }
+
+    .tag.coral {
+      background: var(--coral);
+    }
+
+    .tag.blue {
+      background: var(--blue);
+    }
+
+    .tag.green {
+      background: var(--green);
+    }
+
+    .profile-panel {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .facts {
+      display: grid;
+      gap: 12px;
+    }
+
+    .fact-row {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 12px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .fact-row:last-child {
+      border-bottom: 0;
+    }
+
+    .fact-row strong {
+      color: var(--ink);
+    }
+
+    .fact-row span {
+      color: var(--muted);
+    }
+
+    .story {
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+    }
+
+    .story p:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 14px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 20px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+    }
+
+    .timeline-item strong {
+      color: var(--teal);
+    }
+
+    .timeline-item p {
+      margin-bottom: 0;
+      color: var(--muted);
+    }
+
+    .footer {
+      padding: 32px 24px;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      text-align: center;
+    }
+
+    @media (max-width: 920px) {
+      .hero-content,
+      .profile-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-content {
+        gap: 32px;
+      }
+
+      .info-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero {
+        min-height: auto;
+        padding: 18px;
+      }
+
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+      }
+
+      .hero-content {
+        padding: 48px 0 12px;
+      }
+
+      h1 {
+        font-size: 42px;
+      }
+
+      h2 {
+        font-size: 28px;
+      }
+
+      .lead {
+        font-size: 18px;
+      }
+
+      .hero-visual {
+        min-height: 0;
+      }
+
+      .visual-grid {
+        min-height: 0;
+        grid-template-columns: 1fr;
+        grid-template-rows: none;
+      }
+
+      .visual-tile {
+        min-height: 128px;
+      }
+
+      .tile-large {
+        grid-row: auto;
+      }
+
+      .section {
+        padding: 54px 18px;
+      }
+
+      .info-grid,
+      .timeline-item,
+      .fact-row {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline-item,
+      .fact-row {
+        gap: 6px;
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="card">
-      <h1>Abdul Rahim</h1>
-      <h2>Portfolio Website</h2>
-      <p>Hello, I am Abdul Rahim. This is my first portfolio website, created using terminal, Git, GitHub, and GitHub Pages.</p>
-      <a class="button" href="https://github.com/RaheemHub-tech">View My GitHub</a>
+  <header class="hero" id="top">
+    <nav class="topbar" aria-label="Main navigation">
+      <a class="brand" href="#top">Abdul-Raheem</a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#interests">Interests</a>
+        <a href="#future">Future</a>
+        <a href="https://github.com/RaheemHub-tech">GitHub</a>
+      </div>
+    </nav>
+
+    <div class="hero-content">
+      <div>
+        <p class="eyebrow">Student Portfolio</p>
+        <h1>Abdul-Raheem</h1>
+        <p class="lead">I am a 14-year-old student who enjoys cooking, badminton, cricket, Physics, Chemistry, engineering ideas, and learning how AI works.</p>
+        <div class="hero-actions">
+          <a class="button" href="https://github.com/RaheemHub-tech">View My GitHub</a>
+          <a class="button secondary" href="#future">Explore My Goals</a>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-label="Abdul-Raheem's interests">
+        <div class="visual-grid">
+          <div class="visual-tile tile-large">
+            <span>Science</span>
+            <strong>Physics and Chemistry are my favorite subjects.</strong>
+          </div>
+          <div class="visual-tile tile-coral">
+            <span>Cooking</span>
+            <strong>I like making food and trying new ideas.</strong>
+          </div>
+          <div class="visual-tile tile-blue">
+            <span>Cricket</span>
+            <strong>I play as a batsman.</strong>
+          </div>
+          <div class="visual-tile tile-green">
+            <span>Badminton</span>
+            <strong>Fast reactions and focus.</strong>
+          </div>
+          <div class="visual-tile tile-amber">
+            <span>Engineering</span>
+            <strong>Mechanical, robotics, and AI paths interest me.</strong>
+          </div>
+        </div>
+      </div>
     </div>
   </header>
 
-  <section>
-    <h2>About Me</h2>
-    <div class="box">
-      <p>I am learning how to build projects, use Git professionally, push code to GitHub, work with branches, merge changes, and launch websites online.</p>
-    </div>
+  <main>
+    <section class="section" id="about">
+      <div class="section-inner profile-panel">
+        <div class="section-heading">
+          <h2>About Me</h2>
+          <p>I am building this portfolio to share who I am, what I enjoy, and the skills I am developing while I learn more about technology and engineering.</p>
+        </div>
 
-    <h2>My First Project</h2>
-    <div class="box">
-      <p>This portfolio is my first published project. I built it to share my work with my mentor, my dad, and anyone who wants to view my progress.</p>
-    </div>
-      <h2>Skills I Am Building</h2>
-    <div class="box">
-      <p>Git, GitHub, terminal commands, website publishing, HTML, CSS, project workflow, branching, commits, pushes, and merges.</p>
-    </div>
-  </section>
+        <div class="story">
+          <div class="facts">
+            <div class="fact-row">
+              <strong>Name</strong>
+              <span>Abdul-Raheem</span>
+            </div>
+            <div class="fact-row">
+              <strong>Age</strong>
+              <span>14 years and 4 months as of May 2026</span>
+            </div>
+            <div class="fact-row">
+              <strong>Favorite Subjects</strong>
+              <span>Physics and Chemistry</span>
+            </div>
+            <div class="fact-row">
+              <strong>Learning</strong>
+              <span>HTML, CSS, Git, GitHub Pages, and basic AI ideas with help from my dad</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="interests">
+      <div class="section-inner">
+        <div class="section-heading">
+          <h2>What I Enjoy</h2>
+          <p>My interests are a mix of creativity, sport, science, and problem solving.</p>
+        </div>
+
+        <div class="info-grid">
+          <article class="info-card">
+            <span class="tag coral">Cooking</span>
+            <h3>Creative Practice</h3>
+            <p>I enjoy cooking because it lets me experiment, follow steps, and improve through practice.</p>
+          </article>
+          <article class="info-card">
+            <span class="tag green">Badminton</span>
+            <h3>Speed and Control</h3>
+            <p>Badminton helps me work on timing, movement, focus, and quick decision-making.</p>
+          </article>
+          <article class="info-card">
+            <span class="tag blue">Cricket</span>
+            <h3>Batsman</h3>
+            <p>In cricket, I enjoy batting and learning how to stay patient, read the ball, and play better shots.</p>
+          </article>
+          <article class="info-card">
+            <span class="tag teal">Science</span>
+            <h3>Physics and Chemistry</h3>
+            <p>These subjects make me curious about energy, matter, machines, reactions, and the world around me.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="future">
+      <div class="section-inner">
+        <div class="section-heading">
+          <h2>Future Direction</h2>
+          <p>I am still deciding my main field, but I already know the areas that excite me the most.</p>
+        </div>
+
+        <div class="timeline">
+          <article class="timeline-item">
+            <strong>Mechanical Engineering</strong>
+            <p>I am interested in how machines are designed, built, tested, and improved.</p>
+          </article>
+          <article class="timeline-item">
+            <strong>Robotics Engineering</strong>
+            <p>Robotics connects mechanics, electronics, programming, and problem solving in a practical way.</p>
+          </article>
+          <article class="timeline-item">
+            <strong>Artificial Intelligence</strong>
+            <p>I have started learning a little about AI from my dad, and I want to keep exploring how it can support future engineering projects.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Built by Abdul-Raheem with HTML, CSS, Git, GitHub, and GitHub Pages.</p>
+  </footer>
 </body>
 </html>
-
