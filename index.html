@@ -16,6 +16,8 @@
       --coral: #d94841;
       --amber: #b7791f;
       --blue: #2b6cb0;
+      --rose: #be3455;
+      --shadow: 0 18px 50px rgba(37, 44, 38, 0.13);
     }
 
     * {
@@ -29,7 +31,10 @@
     body {
       margin: 0;
       font-family: "Segoe UI", Arial, sans-serif;
-      background: var(--paper);
+      background:
+        linear-gradient(135deg, rgba(217, 72, 65, 0.05), transparent 26%),
+        linear-gradient(315deg, rgba(15, 118, 110, 0.08), transparent 30%),
+        var(--paper);
       color: var(--ink);
       line-height: 1.6;
     }
@@ -49,8 +54,11 @@
       padding: 24px;
       border-bottom: 1px solid var(--line);
       background:
+        linear-gradient(rgba(255, 255, 255, 0.72) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.72) 1px, transparent 1px),
         linear-gradient(90deg, rgba(15, 118, 110, 0.09) 0 25%, transparent 25% 100%),
         var(--paper);
+      background-size: 34px 34px, 34px 34px, auto, auto;
     }
 
     .topbar {
@@ -144,6 +152,8 @@
     }
 
     .button {
+      position: relative;
+      overflow: hidden;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -155,6 +165,30 @@
       color: #ffffff;
       text-decoration: none;
       font-weight: 800;
+      transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+    }
+
+    .button::after {
+      content: "";
+      position: absolute;
+      top: -60%;
+      left: -45%;
+      width: 35%;
+      height: 220%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: rotate(18deg);
+      transition: left 420ms ease;
+    }
+
+    .button:hover,
+    .button:focus-visible {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(21, 21, 21, 0.18);
+    }
+
+    .button:hover::after,
+    .button:focus-visible::after {
+      left: 120%;
     }
 
     .button.secondary {
@@ -168,7 +202,8 @@
       border-radius: 8px;
       background: var(--panel);
       padding: 16px;
-      box-shadow: 0 24px 70px rgba(40, 50, 40, 0.12);
+      box-shadow: var(--shadow);
+      transform: rotate(0.4deg);
     }
 
     .visual-grid {
@@ -190,6 +225,7 @@
       border-radius: 8px;
       padding: 18px;
       color: #ffffff;
+      transition: transform 180ms ease, filter 180ms ease;
     }
 
     .visual-tile::after {
@@ -201,6 +237,24 @@
       height: 96px;
       border: 16px solid rgba(255, 255, 255, 0.25);
       border-radius: 50%;
+    }
+
+    .visual-tile::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(130deg, rgba(255, 255, 255, 0.18), transparent 42%);
+      opacity: 0;
+      transition: opacity 180ms ease;
+    }
+
+    .visual-tile:hover {
+      transform: translateY(-4px) scale(1.01);
+      filter: saturate(1.08);
+    }
+
+    .visual-tile:hover::before {
+      opacity: 1;
     }
 
     .visual-tile span,
@@ -285,6 +339,14 @@
       border: 1px solid var(--line);
       border-radius: 8px;
       background: var(--panel);
+      box-shadow: 0 10px 24px rgba(40, 50, 40, 0.06);
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+    }
+
+    .info-card:hover {
+      border-color: rgba(21, 21, 21, 0.24);
+      box-shadow: var(--shadow);
+      transform: translateY(-5px);
     }
 
     .info-card p {
@@ -294,6 +356,8 @@
     }
 
     .popup-button {
+      position: relative;
+      overflow: hidden;
       margin-top: 18px;
       display: inline-flex;
       align-items: center;
@@ -306,12 +370,28 @@
       color: var(--ink);
       cursor: pointer;
       font-weight: 800;
+      transition: transform 170ms ease, box-shadow 170ms ease, background 170ms ease, color 170ms ease;
+    }
+
+    .popup-button::after {
+      content: ">";
+      display: inline-flex;
+      margin-left: 8px;
+      transform: translateX(0);
+      transition: transform 170ms ease;
     }
 
     .popup-button:hover,
     .popup-button:focus-visible {
       background: var(--ink);
       color: #ffffff;
+      box-shadow: 0 10px 22px rgba(21, 21, 21, 0.14);
+      transform: translateY(-2px);
+    }
+
+    .popup-button:hover::after,
+    .popup-button:focus-visible::after {
+      transform: translateX(3px);
     }
 
     .tag {
@@ -377,6 +457,7 @@
       border: 1px solid var(--line);
       border-radius: 8px;
       background: var(--panel);
+      box-shadow: 0 10px 24px rgba(40, 50, 40, 0.06);
     }
 
     .story p:last-child {
@@ -396,6 +477,14 @@
       border: 1px solid var(--line);
       border-radius: 8px;
       background: var(--panel);
+      box-shadow: 0 10px 24px rgba(40, 50, 40, 0.06);
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+    }
+
+    .timeline-item:hover {
+      border-color: rgba(21, 21, 21, 0.24);
+      box-shadow: var(--shadow);
+      transform: translateY(-4px);
     }
 
     .timeline-item strong {
@@ -415,14 +504,65 @@
       background: var(--panel);
       color: var(--ink);
       box-shadow: 0 24px 80px rgba(21, 21, 21, 0.28);
+      --popup-accent: var(--teal);
     }
 
     .popup-dialog::backdrop {
-      background: rgba(21, 21, 21, 0.56);
+      background: rgba(21, 21, 21, 0.58);
+      backdrop-filter: blur(8px);
+    }
+
+    .popup-dialog[open] {
+      animation: popup-rise 260ms cubic-bezier(0.2, 0.9, 0.25, 1.25);
+    }
+
+    .popup-dialog.is-closing {
+      animation: popup-fade 170ms ease forwards;
     }
 
     .popup-content {
-      padding: 28px;
+      position: relative;
+      overflow: hidden;
+      padding: 30px;
+    }
+
+    .popup-content::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background: linear-gradient(90deg, var(--popup-accent), var(--amber), var(--coral));
+    }
+
+    .popup-visual {
+      display: grid;
+      grid-template-columns: 1fr 0.55fr 0.85fr;
+      gap: 8px;
+      height: 76px;
+      margin-bottom: 24px;
+      padding: 10px;
+      border: 1px solid rgba(21, 21, 21, 0.08);
+      border-radius: 8px;
+      background: #f7f7f1;
+    }
+
+    .visual-bar {
+      border-radius: 7px;
+      background: var(--popup-accent);
+      transform-origin: bottom;
+      animation: bar-pop 520ms cubic-bezier(0.2, 0.9, 0.25, 1.25) both;
+    }
+
+    .visual-bar:nth-child(2) {
+      background: var(--amber);
+      animation-delay: 70ms;
+    }
+
+    .visual-bar:nth-child(3) {
+      background: var(--coral);
+      animation-delay: 130ms;
     }
 
     .popup-kicker {
@@ -430,7 +570,7 @@
       margin-bottom: 12px;
       padding: 5px 9px;
       border-radius: 8px;
-      background: var(--teal);
+      background: var(--popup-accent);
       color: #ffffff;
       font-size: 13px;
       font-weight: 800;
@@ -456,12 +596,60 @@
     .close-button {
       min-height: 42px;
       padding: 9px 14px;
-      border: 1px solid var(--ink);
+      border: 1px solid var(--popup-accent);
       border-radius: 8px;
-      background: var(--ink);
+      background: var(--popup-accent);
       color: #ffffff;
       cursor: pointer;
       font-weight: 800;
+      transition: transform 170ms ease, box-shadow 170ms ease;
+    }
+
+    .close-button:hover,
+    .close-button:focus-visible {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(21, 21, 21, 0.16);
+    }
+
+    @keyframes popup-rise {
+      from {
+        opacity: 0;
+        transform: translateY(26px) scale(0.94);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes popup-fade {
+      to {
+        opacity: 0;
+        transform: translateY(16px) scale(0.97);
+      }
+    }
+
+    @keyframes bar-pop {
+      from {
+        opacity: 0;
+        transform: scaleY(0.18);
+      }
+
+      to {
+        opacity: 1;
+        transform: scaleY(1);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+        animation: none !important;
+      }
     }
 
     .footer {
@@ -645,25 +833,25 @@
             <span class="tag coral">Cooking</span>
             <h3>Creative Practice</h3>
             <p>I enjoy cooking because it lets me experiment, follow steps, and improve through practice.</p>
-            <button class="popup-button" type="button" data-popup="cooking">Open Pop-Up</button>
+            <button class="popup-button" type="button" data-popup="cooking">See Details</button>
           </article>
           <article class="info-card">
             <span class="tag green">Badminton</span>
             <h3>Speed and Control</h3>
             <p>Badminton helps me work on timing, movement, focus, and quick decision-making.</p>
-            <button class="popup-button" type="button" data-popup="badminton">Open Pop-Up</button>
+            <button class="popup-button" type="button" data-popup="badminton">See Details</button>
           </article>
           <article class="info-card">
             <span class="tag blue">Cricket</span>
             <h3>Batsman</h3>
             <p>In cricket, I enjoy batting and learning how to stay patient, read the ball, and play better shots.</p>
-            <button class="popup-button" type="button" data-popup="cricket">Open Pop-Up</button>
+            <button class="popup-button" type="button" data-popup="cricket">See Details</button>
           </article>
           <article class="info-card">
             <span class="tag teal">Science</span>
             <h3>Physics and Chemistry</h3>
             <p>These subjects make me curious about energy, matter, machines, reactions, and the world around me.</p>
-            <button class="popup-button" type="button" data-popup="science">Open Pop-Up</button>
+            <button class="popup-button" type="button" data-popup="science">See Details</button>
           </article>
         </div>
       </div>
@@ -681,21 +869,21 @@
             <strong>Mechanical Engineering</strong>
             <div>
               <p>I am interested in how machines are designed, built, tested, and improved.</p>
-              <button class="popup-button" type="button" data-popup="mechanical">View Goal</button>
+              <button class="popup-button" type="button" data-popup="mechanical">Explore Goal</button>
             </div>
           </article>
           <article class="timeline-item">
             <strong>Robotics Engineering</strong>
             <div>
               <p>Robotics connects mechanics, electronics, programming, and problem solving in a practical way.</p>
-              <button class="popup-button" type="button" data-popup="robotics">View Goal</button>
+              <button class="popup-button" type="button" data-popup="robotics">Explore Goal</button>
             </div>
           </article>
           <article class="timeline-item">
             <strong>Artificial Intelligence</strong>
             <div>
               <p>I have started learning a little about AI from my dad, and I want to keep exploring how it can support future engineering projects.</p>
-              <button class="popup-button" type="button" data-popup="ai">View Goal</button>
+              <button class="popup-button" type="button" data-popup="ai">Explore Goal</button>
             </div>
           </article>
         </div>
@@ -703,8 +891,13 @@
     </section>
   </main>
 
-  <dialog class="popup-dialog" id="popup-dialog" aria-labelledby="popup-title">
+  <dialog class="popup-dialog" id="popup-dialog" aria-labelledby="popup-title" aria-describedby="popup-text">
     <div class="popup-content">
+      <div class="popup-visual" aria-hidden="true">
+        <span class="visual-bar"></span>
+        <span class="visual-bar"></span>
+        <span class="visual-bar"></span>
+      </div>
       <span class="popup-kicker" id="popup-kicker">Portfolio</span>
       <h2 id="popup-title">Title</h2>
       <p id="popup-text">Details will appear here.</p>
@@ -723,37 +916,44 @@
       cooking: {
         kicker: "Cooking",
         title: "Creative Practice",
-        text: "Cooking helps me learn patience, planning, and creativity. I enjoy trying ideas, following steps, and improving the result each time."
+        text: "Cooking helps me learn patience, planning, and creativity. I enjoy trying ideas, following steps, and improving the result each time.",
+        accent: "#d94841"
       },
       badminton: {
         kicker: "Badminton",
         title: "Speed and Focus",
-        text: "Badminton is one of my favorite sports because it needs fast reactions, control, balance, and smart movement around the court."
+        text: "Badminton is one of my favorite sports because it needs fast reactions, control, balance, and smart movement around the court.",
+        accent: "#2f855a"
       },
       cricket: {
         kicker: "Cricket",
         title: "Batsman Mindset",
-        text: "In cricket, I like batting. I want to keep improving my timing, shot selection, patience, and confidence at the crease."
+        text: "In cricket, I like batting. I want to keep improving my timing, shot selection, patience, and confidence at the crease.",
+        accent: "#2b6cb0"
       },
       science: {
         kicker: "Science",
         title: "Physics and Chemistry",
-        text: "Physics and Chemistry are my favorite subjects because they explain machines, energy, reactions, materials, and many things used in engineering."
+        text: "Physics and Chemistry are my favorite subjects because they explain machines, energy, reactions, materials, and many things used in engineering.",
+        accent: "#0f766e"
       },
       mechanical: {
         kicker: "Future Goal",
         title: "Mechanical Engineering",
-        text: "Mechanical engineering interests me because it is about designing machines and understanding how real parts move, connect, and work together."
+        text: "Mechanical engineering interests me because it is about designing machines and understanding how real parts move, connect, and work together.",
+        accent: "#b7791f"
       },
       robotics: {
         kicker: "Future Goal",
         title: "Robotics Engineering",
-        text: "Robotics is exciting because it combines machines, sensors, coding, electronics, and problem solving to build systems that can do useful tasks."
+        text: "Robotics is exciting because it combines machines, sensors, coding, electronics, and problem solving to build systems that can do useful tasks.",
+        accent: "#be3455"
       },
       ai: {
         kicker: "Future Goal",
         title: "Artificial Intelligence",
-        text: "I have started learning a little about AI from my dad. I want to keep exploring it and understand how it can help engineering projects in the future."
+        text: "I have started learning a little about AI from my dad. I want to keep exploring it and understand how it can help engineering projects in the future.",
+        accent: "#0f766e"
       }
     };
 
@@ -774,6 +974,9 @@
         popupKicker.textContent = details.kicker;
         popupTitle.textContent = details.title;
         popupText.textContent = details.text;
+        dialog.classList.remove("is-closing");
+        dialog.style.setProperty("--popup-accent", details.accent);
+
         if (typeof dialog.showModal === "function") {
           dialog.showModal();
         } else {
@@ -782,14 +985,30 @@
       });
     });
 
-    closePopup.addEventListener("click", () => {
-      dialog.close();
-    });
+    const closeWithAnimation = () => {
+      dialog.classList.add("is-closing");
+      window.setTimeout(() => {
+        dialog.classList.remove("is-closing");
+
+        if (typeof dialog.close === "function" && dialog.open) {
+          dialog.close();
+        } else {
+          dialog.removeAttribute("open");
+        }
+      }, 160);
+    };
+
+    closePopup.addEventListener("click", closeWithAnimation);
 
     dialog.addEventListener("click", (event) => {
       if (event.target === dialog) {
-        dialog.close();
+        closeWithAnimation();
       }
+    });
+
+    dialog.addEventListener("cancel", (event) => {
+      event.preventDefault();
+      closeWithAnimation();
     });
   </script>
 </body>
