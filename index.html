@@ -420,6 +420,602 @@
       background: var(--green);
     }
 
+    .cricket-card {
+      cursor: pointer;
+    }
+
+    .cricket-card:focus-visible,
+    .cricket-launch-tile:focus-visible {
+      outline: 3px solid rgba(47, 133, 90, 0.48);
+      outline-offset: 4px;
+    }
+
+    .cricket-card .cricket-button {
+      border-color: var(--green);
+      background: var(--green);
+      color: #ffffff;
+    }
+
+    .cricket-card .cricket-button:hover,
+    .cricket-card .cricket-button:focus-visible {
+      border-color: var(--ink);
+      background: var(--ink);
+    }
+
+    .cricket-launch-tile {
+      cursor: pointer;
+    }
+
+    .cricket-game-dialog {
+      width: min(980px, calc(100% - 24px));
+      max-height: calc(100dvh - 24px);
+      border: 1px solid rgba(31, 107, 72, 0.38);
+      border-radius: 8px;
+      padding: 0;
+      background: #f8fbf2;
+      color: var(--ink);
+      box-shadow: 0 28px 90px rgba(12, 38, 23, 0.34);
+    }
+
+    .cricket-game-dialog::backdrop {
+      background: rgba(9, 24, 16, 0.66);
+      backdrop-filter: blur(8px);
+    }
+
+    .cricket-game-dialog[open] {
+      animation: popup-rise 260ms cubic-bezier(0.2, 0.9, 0.25, 1.25);
+    }
+
+    .cricket-game-dialog.is-closing {
+      animation: popup-fade 170ms ease forwards;
+    }
+
+    .cricket-game-shell {
+      display: grid;
+      gap: 14px;
+      max-height: calc(100dvh - 24px);
+      overflow: auto;
+      padding: 18px;
+    }
+
+    .cricket-game-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .cricket-game-kicker {
+      display: inline-flex;
+      margin-bottom: 4px;
+      padding: 4px 8px;
+      border-radius: 8px;
+      background: var(--green);
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .cricket-game-topbar h2 {
+      margin-bottom: 0;
+      font-size: 26px;
+    }
+
+    .cricket-score-panel {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .score-pill {
+      min-width: 86px;
+      padding: 8px 10px;
+      border: 1px solid rgba(21, 21, 21, 0.12);
+      border-radius: 8px;
+      background: #ffffff;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .score-pill strong {
+      display: block;
+      color: var(--ink);
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    .cricket-close {
+      min-height: 42px;
+      padding: 9px 13px;
+      border: 1px solid var(--ink);
+      border-radius: 8px;
+      background: var(--ink);
+      color: #ffffff;
+      cursor: pointer;
+      font-weight: 800;
+    }
+
+    .cricket-message {
+      min-height: 42px;
+      display: flex;
+      align-items: center;
+      padding: 10px 12px;
+      border: 1px solid rgba(47, 133, 90, 0.18);
+      border-radius: 8px;
+      background: #ffffff;
+      color: #314a3b;
+      font-weight: 700;
+    }
+
+    .cricket-ground {
+      position: relative;
+      isolation: isolate;
+      min-height: 360px;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border: 2px solid #1f6b48;
+      border-radius: 8px;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.16), transparent 32%),
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.08) 0 34px, rgba(0, 0, 0, 0.05) 34px 68px),
+        linear-gradient(135deg, #3a9d62, #207348 58%, #195c3b);
+      box-shadow: inset 0 0 0 8px rgba(255, 255, 255, 0.08), 0 16px 34px rgba(22, 65, 39, 0.18);
+      touch-action: manipulation;
+    }
+
+    .cricket-ground::before {
+      content: "";
+      position: absolute;
+      inset: 8%;
+      z-index: 0;
+      border: 2px solid rgba(255, 255, 255, 0.42);
+      border-radius: 50%;
+    }
+
+    .cricket-ground::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50%;
+      z-index: 0;
+      border-top: 1px dashed rgba(255, 255, 255, 0.2);
+    }
+
+    .game-pitch {
+      position: absolute;
+      top: 12%;
+      bottom: 10%;
+      left: 50%;
+      z-index: 1;
+      width: clamp(72px, 15%, 122px);
+      transform: translateX(-50%);
+      border-radius: 36px;
+      background:
+        linear-gradient(90deg, rgba(105, 70, 30, 0.22), transparent 18% 82%, rgba(105, 70, 30, 0.22)),
+        linear-gradient(180deg, #efd08e, #d5a961 54%, #bd8441);
+      box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.22), 0 14px 30px rgba(16, 44, 27, 0.24);
+    }
+
+    .crease {
+      position: absolute;
+      left: 12%;
+      right: 12%;
+      height: 3px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.88);
+      box-shadow: 0 12px 0 rgba(255, 255, 255, 0.54);
+    }
+
+    .crease-top {
+      top: 24%;
+    }
+
+    .crease-bottom {
+      bottom: 18%;
+    }
+
+    .bowling-line {
+      top: 34%;
+      background: #ffffff;
+      box-shadow: none;
+    }
+
+    .game-wickets {
+      position: absolute;
+      left: 50%;
+      z-index: 5;
+      display: flex;
+      gap: 4px;
+      transform: translateX(-50%);
+    }
+
+    .game-wickets.top {
+      top: 23%;
+    }
+
+    .game-wickets.bottom {
+      bottom: 15%;
+    }
+
+    .game-wickets::before {
+      content: "";
+      position: absolute;
+      top: -4px;
+      left: -2px;
+      width: 34px;
+      height: 4px;
+      border-radius: 999px;
+      background: #fff5c6;
+    }
+
+    .game-wickets span {
+      width: 5px;
+      height: 28px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #fff7cf, #d6a64c);
+      box-shadow: 0 5px 8px rgba(18, 40, 24, 0.24);
+      transform-origin: bottom center;
+      transition: transform 260ms cubic-bezier(0.2, 0.9, 0.25, 1.25), opacity 180ms ease;
+    }
+
+    .game-wickets::before {
+      transition: transform 260ms cubic-bezier(0.2, 0.9, 0.25, 1.25), opacity 180ms ease;
+      transform-origin: center;
+    }
+
+    .game-wickets.is-hit {
+      animation: wicket-shake 320ms ease;
+    }
+
+    .game-wickets.is-broken::before {
+      opacity: 0.65;
+      transform: rotate(18deg) translate(6px, 8px);
+    }
+
+    .game-wickets.is-broken span:nth-child(1) {
+      transform: rotate(-58deg) translate(-6px, 4px);
+    }
+
+    .game-wickets.is-broken span:nth-child(2) {
+      transform: rotate(18deg) translate(1px, 8px);
+    }
+
+    .game-wickets.is-broken span:nth-child(3) {
+      opacity: 0.8;
+      transform: rotate(62deg) translate(7px, 5px);
+    }
+
+    .cricket-game-ball {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      z-index: 12;
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255, 255, 255, 0.72);
+      border-radius: 50%;
+      background: #c83235;
+      box-shadow: 0 8px 16px rgba(21, 21, 21, 0.24);
+      transform: translate(-50%, -50%);
+      transition: width 160ms ease, height 160ms ease, opacity 160ms ease, box-shadow 160ms ease;
+    }
+
+    .cricket-game-ball::before {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 6px;
+      width: 2px;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.82);
+      transform: rotate(24deg);
+    }
+
+    .cricket-game-ball.is-airborne {
+      width: 20px;
+      height: 20px;
+      box-shadow: 0 24px 34px rgba(21, 21, 21, 0.32);
+    }
+
+    .cricket-game-ball.is-hidden {
+      opacity: 0;
+    }
+
+    .cricket-ant,
+    .cricket-snail {
+      position: absolute;
+      z-index: 8;
+      transform: translate(-50%, -50%);
+      transition: left 110ms linear, top 110ms linear;
+      pointer-events: none;
+    }
+
+    .cricket-ant {
+      width: 46px;
+      height: 32px;
+    }
+
+    .cricket-ant::before {
+      content: "";
+      position: absolute;
+      left: 4px;
+      right: 4px;
+      bottom: 0;
+      height: 9px;
+      border-top: 2px solid #24150f;
+      border-bottom: 2px solid #24150f;
+      opacity: 0.9;
+    }
+
+    .ant-tail,
+    .ant-body,
+    .ant-head {
+      position: absolute;
+      top: 10px;
+      border-radius: 50%;
+      background: #2b1a10;
+      box-shadow: inset -4px -3px 0 rgba(0, 0, 0, 0.18);
+    }
+
+    .ant-tail {
+      left: 2px;
+      width: 16px;
+      height: 14px;
+    }
+
+    .ant-body {
+      left: 15px;
+      width: 17px;
+      height: 16px;
+    }
+
+    .ant-head {
+      left: 30px;
+      width: 14px;
+      height: 14px;
+    }
+
+    .ant-head::before,
+    .ant-head::after {
+      content: "";
+      position: absolute;
+      top: -7px;
+      width: 10px;
+      height: 9px;
+      border-top: 2px solid #2b1a10;
+      border-radius: 50%;
+    }
+
+    .ant-head::before {
+      left: -2px;
+      transform: rotate(-24deg);
+    }
+
+    .ant-head::after {
+      right: -5px;
+      transform: rotate(24deg);
+    }
+
+    .ant-bat {
+      position: absolute;
+      right: -6px;
+      top: 1px;
+      width: 9px;
+      height: 38px;
+      border-radius: 6px 6px 4px 4px;
+      background: linear-gradient(180deg, #f4d18b, #b9772e);
+      box-shadow: 0 7px 10px rgba(18, 40, 24, 0.22);
+      transform: rotate(24deg);
+      transform-origin: 50% 88%;
+      transition: transform 150ms ease;
+    }
+
+    .ant-bat::before {
+      content: "";
+      position: absolute;
+      left: 3px;
+      bottom: 33px;
+      width: 4px;
+      height: 18px;
+      border-radius: 999px;
+      background: #26382c;
+    }
+
+    .runner .ant-bat {
+      left: -4px;
+      right: auto;
+      transform: rotate(-34deg);
+    }
+
+    .cricket-ground.is-swinging .striker .ant-bat {
+      transform: rotate(-72deg) translate(4px, -5px);
+    }
+
+    .cricket-ground.is-running .cricket-ant {
+      transition: left 90ms linear, top 90ms linear;
+    }
+
+    .cricket-snail {
+      width: 58px;
+      height: 36px;
+    }
+
+    .fielder {
+      z-index: 4;
+      transform: translate(-50%, -50%) scale(0.82);
+    }
+
+    .snail-body {
+      position: absolute;
+      left: 12px;
+      bottom: 4px;
+      width: 40px;
+      height: 16px;
+      border-radius: 999px 999px 10px 10px;
+      background: #c9d28d;
+      box-shadow: inset -8px -4px 0 rgba(88, 96, 39, 0.18);
+    }
+
+    .snail-shell {
+      position: absolute;
+      left: 4px;
+      bottom: 8px;
+      width: 28px;
+      height: 28px;
+      border: 3px solid rgba(91, 58, 32, 0.42);
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 54% 52%, #8c5a33 0 3px, transparent 4px),
+        conic-gradient(from 30deg, #8c5a33, #d09b5f, #8c5a33, #e0b06c, #8c5a33);
+      box-shadow: 0 6px 10px rgba(18, 40, 24, 0.2);
+    }
+
+    .snail-eye {
+      position: absolute;
+      top: 7px;
+      width: 2px;
+      height: 14px;
+      background: #6f7b45;
+      transform-origin: bottom;
+    }
+
+    .snail-eye::before {
+      content: "";
+      position: absolute;
+      top: -4px;
+      left: -3px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #1f241d;
+    }
+
+    .snail-eye.left {
+      right: 13px;
+      transform: rotate(-18deg);
+    }
+
+    .snail-eye.right {
+      right: 5px;
+      transform: rotate(16deg);
+    }
+
+    .bowler {
+      z-index: 9;
+    }
+
+    .cricket-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .bat-button {
+      min-width: 150px;
+      min-height: 56px;
+      padding: 12px 24px;
+      border: 0;
+      border-radius: 8px;
+      background: var(--coral);
+      color: #ffffff;
+      cursor: pointer;
+      font-size: 20px;
+      font-weight: 900;
+      box-shadow: 0 12px 24px rgba(217, 72, 65, 0.28);
+      transition: transform 150ms ease, box-shadow 150ms ease, filter 150ms ease;
+    }
+
+    .bat-button:hover,
+    .bat-button:focus-visible {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 30px rgba(217, 72, 65, 0.34);
+      filter: saturate(1.08);
+    }
+
+    .bat-button:active {
+      transform: translateY(1px);
+    }
+
+    .bat-button:disabled {
+      cursor: not-allowed;
+      filter: grayscale(0.35);
+      opacity: 0.68;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .cricket-result {
+      position: absolute;
+      inset: 0;
+      z-index: 40;
+      display: grid;
+      place-items: center;
+      padding: 18px;
+      background: rgba(8, 24, 15, 0.68);
+    }
+
+    .cricket-result[hidden] {
+      display: none;
+    }
+
+    .cricket-result-panel {
+      width: min(360px, 100%);
+      padding: 22px;
+      border: 2px solid rgba(255, 255, 255, 0.72);
+      border-radius: 8px;
+      background: #ffffff;
+      text-align: center;
+      box-shadow: 0 20px 52px rgba(4, 16, 9, 0.32);
+    }
+
+    .cricket-result-panel h3 {
+      margin-bottom: 8px;
+      color: var(--coral);
+      font-size: 30px;
+      line-height: 1.05;
+    }
+
+    .cricket-result-panel p {
+      margin-bottom: 18px;
+      color: var(--muted);
+    }
+
+    .cricket-restart {
+      min-height: 44px;
+      padding: 10px 16px;
+      border: 1px solid var(--green);
+      border-radius: 8px;
+      background: var(--green);
+      color: #ffffff;
+      cursor: pointer;
+      font-weight: 900;
+    }
+
+    @keyframes wicket-shake {
+      0%,
+      100% {
+        transform: translateX(-50%) rotate(0deg);
+      }
+
+      25% {
+        transform: translateX(-50%) rotate(-5deg);
+      }
+
+      55% {
+        transform: translateX(-50%) rotate(5deg);
+      }
+    }
+
     .profile-panel {
       display: grid;
       grid-template-columns: 0.85fr 1.15fr;
@@ -733,6 +1329,38 @@
         grid-template-columns: 1fr;
       }
 
+      .cricket-game-dialog {
+        width: calc(100% - 16px);
+      }
+
+      .cricket-game-shell {
+        padding: 12px;
+      }
+
+      .cricket-score-panel {
+        justify-content: flex-start;
+        width: 100%;
+      }
+
+      .cricket-ground {
+        min-height: 390px;
+        aspect-ratio: 4 / 5;
+      }
+
+      .cricket-ant {
+        width: 42px;
+        height: 30px;
+      }
+
+      .cricket-snail {
+        width: 50px;
+        height: 34px;
+      }
+
+      .bat-button {
+        width: 100%;
+      }
+
       .timeline-item,
       .fact-row {
         gap: 6px;
@@ -773,7 +1401,7 @@
             <span>Cooking</span>
             <strong>I like making food and trying new ideas.</strong>
           </div>
-          <div class="visual-tile tile-blue">
+          <div class="visual-tile tile-blue cricket-launch-tile" data-cricket-card tabindex="0" role="button" aria-label="Play Cricket mini-game">
             <span>Cricket</span>
             <strong>I play as a batsman.</strong>
           </div>
@@ -841,11 +1469,11 @@
             <p>Badminton helps me work on timing, movement, focus, and quick decision-making.</p>
             <button class="popup-button" type="button" data-popup="badminton">See Details</button>
           </article>
-          <article class="info-card">
+          <article class="info-card cricket-card" data-cricket-card>
             <span class="tag blue">Cricket</span>
             <h3>Batsman</h3>
             <p>In cricket, I enjoy batting and learning how to stay patient, read the ball, and play better shots.</p>
-            <button class="popup-button" type="button" data-popup="cricket">See Details</button>
+            <button class="popup-button cricket-button" type="button" data-cricket-launch>Play Cricket</button>
           </article>
           <article class="info-card">
             <span class="tag teal">Science</span>
@@ -907,6 +1535,110 @@
     </div>
   </dialog>
 
+  <dialog class="cricket-game-dialog" id="cricket-game" aria-labelledby="cricket-game-title" aria-describedby="cricket-game-message">
+    <div class="cricket-game-shell">
+      <div class="cricket-game-topbar">
+        <div>
+          <span class="cricket-game-kicker">Cricket Mini-Game</span>
+          <h2 id="cricket-game-title">Cricket Chase</h2>
+        </div>
+        <div class="cricket-score-panel" aria-label="Cricket score">
+          <div class="score-pill">
+            Score
+            <strong id="cricket-score">0</strong>
+          </div>
+          <div class="score-pill">
+            Balls
+            <strong id="cricket-balls">0</strong>
+          </div>
+          <div class="score-pill">
+            Speed
+            <strong id="cricket-speed">Normal</strong>
+          </div>
+          <button class="cricket-close" type="button" id="close-cricket">Close</button>
+        </div>
+      </div>
+
+      <div class="cricket-message" id="cricket-game-message" role="status" aria-live="polite">Open the game and watch the snail bowler.</div>
+
+      <div class="cricket-ground" id="cricket-ground" aria-label="Cricket mini-game with ant batters and snail fielders">
+        <div class="game-pitch" aria-hidden="true">
+          <span class="crease crease-top"></span>
+          <span class="crease bowling-line"></span>
+          <span class="crease crease-bottom"></span>
+          <div class="game-wickets top">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div class="game-wickets bottom" id="striker-wickets">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+
+        <span class="cricket-game-ball" id="cricket-game-ball"></span>
+
+        <div class="cricket-ant striker" id="striker-ant" aria-hidden="true">
+          <span class="ant-tail"></span>
+          <span class="ant-body"></span>
+          <span class="ant-head"></span>
+          <span class="ant-bat"></span>
+        </div>
+        <div class="cricket-ant runner" id="runner-ant" aria-hidden="true">
+          <span class="ant-tail"></span>
+          <span class="ant-body"></span>
+          <span class="ant-head"></span>
+          <span class="ant-bat"></span>
+        </div>
+
+        <div class="cricket-snail bowler" id="snail-bowler" aria-hidden="true">
+          <span class="snail-body"></span>
+          <span class="snail-shell"></span>
+          <span class="snail-eye left"></span>
+          <span class="snail-eye right"></span>
+        </div>
+        <div class="cricket-snail fielder" data-fielder aria-hidden="true">
+          <span class="snail-body"></span>
+          <span class="snail-shell"></span>
+          <span class="snail-eye left"></span>
+          <span class="snail-eye right"></span>
+        </div>
+        <div class="cricket-snail fielder" data-fielder aria-hidden="true">
+          <span class="snail-body"></span>
+          <span class="snail-shell"></span>
+          <span class="snail-eye left"></span>
+          <span class="snail-eye right"></span>
+        </div>
+        <div class="cricket-snail fielder" data-fielder aria-hidden="true">
+          <span class="snail-body"></span>
+          <span class="snail-shell"></span>
+          <span class="snail-eye left"></span>
+          <span class="snail-eye right"></span>
+        </div>
+        <div class="cricket-snail fielder" data-fielder aria-hidden="true">
+          <span class="snail-body"></span>
+          <span class="snail-shell"></span>
+          <span class="snail-eye left"></span>
+          <span class="snail-eye right"></span>
+        </div>
+
+        <div class="cricket-result" id="cricket-result" hidden>
+          <div class="cricket-result-panel">
+            <h3>You Lose</h3>
+            <p>The ball hit the wicket.</p>
+            <button class="cricket-restart" type="button" id="restart-cricket">Play Again</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="cricket-controls">
+        <button class="bat-button" type="button" id="bat-button">Bat</button>
+      </div>
+    </div>
+  </dialog>
+
   <footer class="footer">
     <p>Built by Abdul-Raheem with HTML, CSS, Git, GitHub, and GitHub Pages.</p>
   </footer>
@@ -924,12 +1656,6 @@
         title: "Speed and Focus",
         text: "Badminton is one of my favorite sports because it needs fast reactions, control, balance, and smart movement around the court.",
         accent: "#2f855a"
-      },
-      cricket: {
-        kicker: "Cricket",
-        title: "Batsman Mindset",
-        text: "In cricket, I like batting. I want to keep improving my timing, shot selection, patience, and confidence at the crease.",
-        accent: "#2b6cb0"
       },
       science: {
         kicker: "Science",
@@ -1010,6 +1736,633 @@
       event.preventDefault();
       closeWithAnimation();
     });
+
+    const cricketDialog = document.querySelector("#cricket-game");
+    const cricketGround = document.querySelector("#cricket-ground");
+    const cricketScore = document.querySelector("#cricket-score");
+    const cricketBalls = document.querySelector("#cricket-balls");
+    const cricketSpeed = document.querySelector("#cricket-speed");
+    const cricketMessage = document.querySelector("#cricket-game-message");
+    const cricketBall = document.querySelector("#cricket-game-ball");
+    const strikerAnt = document.querySelector("#striker-ant");
+    const runnerAnt = document.querySelector("#runner-ant");
+    const snailBowler = document.querySelector("#snail-bowler");
+    const snailFielders = Array.from(document.querySelectorAll("[data-fielder]"));
+    const batButton = document.querySelector("#bat-button");
+    const closeCricket = document.querySelector("#close-cricket");
+    const strikerWickets = document.querySelector("#striker-wickets");
+    const cricketResult = document.querySelector("#cricket-result");
+    const restartCricket = document.querySelector("#restart-cricket");
+
+    const cricketState = {
+      active: false,
+      phase: "idle",
+      score: 0,
+      balls: 0,
+      halfCenturyShown: false,
+      timers: [],
+      frame: 0,
+      deliveryStart: 0,
+      deliveryDuration: 1200,
+      batLocked: false,
+      fieldSetIndex: 0,
+      currentDelivery: null,
+      hitProgress: 0.8,
+      ballPosition: { x: 50, y: 20 }
+    };
+
+    const cricketPositions = {
+      bowlerStart: { x: 50, y: 20 },
+      bowlerBack: { x: 50, y: 12 },
+      bowlingLine: { x: 50, y: 34 },
+      striker: { x: 50, y: 72 },
+      runner: { x: 50, y: 29 },
+      wicket: { x: 50, y: 83 },
+      fielders: [
+        { x: 18, y: 27 },
+        { x: 82, y: 28 },
+        { x: 22, y: 76 },
+        { x: 78, y: 74 }
+      ]
+    };
+
+    const cricketFieldSets = [
+      [
+        { x: 18, y: 27 },
+        { x: 82, y: 28 },
+        { x: 22, y: 76 },
+        { x: 78, y: 74 }
+      ],
+      [
+        { x: 26, y: 20 },
+        { x: 73, y: 23 },
+        { x: 15, y: 58 },
+        { x: 86, y: 65 }
+      ],
+      [
+        { x: 14, y: 38 },
+        { x: 86, y: 38 },
+        { x: 35, y: 84 },
+        { x: 67, y: 82 }
+      ],
+      [
+        { x: 30, y: 30 },
+        { x: 70, y: 30 },
+        { x: 12, y: 82 },
+        { x: 88, y: 82 }
+      ]
+    ];
+
+    const cricketDeliveries = [
+      {
+        name: "straight ball",
+        offset: () => 0
+      },
+      {
+        name: "left curve",
+        offset: (progress) => -3.6 * Math.sin(Math.PI * progress)
+      },
+      {
+        name: "right curve",
+        offset: (progress) => 3.6 * Math.sin(Math.PI * progress)
+      },
+      {
+        name: "swing in",
+        offset: (progress) => {
+          const late = clamp((progress - 0.38) / 0.62, 0, 1);
+          return 2.4 * Math.sin(Math.PI * progress) - 3.2 * Math.sin(Math.PI * late);
+        }
+      },
+      {
+        name: "swing away",
+        offset: (progress) => {
+          const late = clamp((progress - 0.38) / 0.62, 0, 1);
+          return -2.4 * Math.sin(Math.PI * progress) + 3.2 * Math.sin(Math.PI * late);
+        }
+      }
+    ];
+
+    const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+    const easeOut = (value) => 1 - Math.pow(1 - value, 3);
+    const randomBetween = (min, max) => min + Math.random() * (max - min);
+
+    const setPosition = (element, position) => {
+      element.style.left = `${position.x}%`;
+      element.style.top = `${position.y}%`;
+    };
+
+    const setBallPosition = (position) => {
+      cricketState.ballPosition = { x: position.x, y: position.y };
+      setPosition(cricketBall, position);
+    };
+
+    const interpolate = (from, to, progress) => ({
+      x: from.x + (to.x - from.x) * progress,
+      y: from.y + (to.y - from.y) * progress
+    });
+
+    const updateCricketScore = () => {
+      cricketScore.textContent = String(cricketState.score);
+      cricketBalls.textContent = String(cricketState.balls);
+      cricketSpeed.textContent = cricketState.score >= 50 ? "Fast" : "Normal";
+    };
+
+    const setCricketMessage = (message) => {
+      cricketMessage.textContent = message;
+    };
+
+    const addCricketTimer = (callback, delay) => {
+      const timer = window.setTimeout(() => {
+        cricketState.timers = cricketState.timers.filter((timerId) => timerId !== timer);
+        callback();
+      }, delay);
+
+      cricketState.timers.push(timer);
+      return timer;
+    };
+
+    const clearCricketTimers = () => {
+      cricketState.timers.forEach((timer) => window.clearTimeout(timer));
+      cricketState.timers = [];
+    };
+
+    const cancelCricketFrame = () => {
+      if (cricketState.frame) {
+        window.cancelAnimationFrame(cricketState.frame);
+        cricketState.frame = 0;
+      }
+    };
+
+    const bowlingSpeedFactor = () => cricketState.score >= 50 ? 0.68 : 1;
+
+    const applyCricketFieldSet = () => {
+      cricketPositions.fielders = cricketFieldSets[cricketState.fieldSetIndex].map((position) => ({ ...position }));
+    };
+
+    const recordCricketBall = () => {
+      cricketState.balls += 1;
+      const fieldChanged = cricketState.balls > 0 && cricketState.balls % 4 === 0;
+
+      if (fieldChanged) {
+        cricketState.fieldSetIndex = (cricketState.fieldSetIndex + 1) % cricketFieldSets.length;
+        applyCricketFieldSet();
+      }
+
+      updateCricketScore();
+      return fieldChanged;
+    };
+
+    const withFieldMessage = (message, fieldChanged) => {
+      if (!fieldChanged) {
+        return message;
+      }
+
+      return `${message} The snail fielders change positions for the next ball.`;
+    };
+
+    const selectCricketDelivery = () => {
+      const options = cricketDeliveries.filter((delivery) => delivery !== cricketState.currentDelivery);
+      cricketState.currentDelivery = options[Math.floor(Math.random() * options.length)];
+      return cricketState.currentDelivery;
+    };
+
+    const hideCricketResult = () => {
+      cricketResult.hidden = true;
+      strikerWickets.classList.remove("is-hit", "is-broken");
+      cricketBall.classList.remove("is-hidden");
+      batButton.disabled = false;
+    };
+
+    const moveToward = (current, target, maxStep) => {
+      const dx = target.x - current.x;
+      const dy = target.y - current.y;
+      const distance = Math.hypot(dx, dy);
+
+      if (distance <= maxStep || distance === 0) {
+        return { position: { x: target.x, y: target.y }, reached: true };
+      }
+
+      return {
+        position: {
+          x: current.x + (dx / distance) * maxStep,
+          y: current.y + (dy / distance) * maxStep
+        },
+        reached: false
+      };
+    };
+
+    const resetCricketActors = () => {
+      cancelCricketFrame();
+      cricketGround.classList.remove("is-swinging", "is-running");
+      cricketBall.classList.remove("is-airborne", "is-hidden");
+      setPosition(snailBowler, cricketPositions.bowlerStart);
+      setPosition(strikerAnt, cricketPositions.striker);
+      setPosition(runnerAnt, cricketPositions.runner);
+      setBallPosition(cricketPositions.bowlerStart);
+
+      snailFielders.forEach((fielder, index) => {
+        setPosition(fielder, cricketPositions.fielders[index]);
+      });
+    };
+
+    const animateCricketPositions = (moves, duration, callback) => {
+      cancelCricketFrame();
+      const startedAt = performance.now();
+
+      const step = (now) => {
+        if (!cricketState.active) {
+          return;
+        }
+
+        const progress = clamp((now - startedAt) / duration, 0, 1);
+        const eased = easeOut(progress);
+
+        moves.forEach((move) => {
+          const position = interpolate(move.from, move.to, eased);
+
+          if (move.element === cricketBall) {
+            setBallPosition(position);
+          } else {
+            setPosition(move.element, position);
+          }
+        });
+
+        if (progress < 1) {
+          cricketState.frame = window.requestAnimationFrame(step);
+        } else {
+          cricketState.frame = 0;
+
+          if (callback) {
+            callback();
+          }
+        }
+      };
+
+      cricketState.frame = window.requestAnimationFrame(step);
+    };
+
+    const addRuns = (runs, message) => {
+      const previousScore = cricketState.score;
+      cricketState.score += runs;
+      updateCricketScore();
+
+      if (previousScore < 50 && cricketState.score >= 50) {
+        cricketState.halfCenturyShown = true;
+        setCricketMessage("Congrats! Half century! Bowling speed increased.");
+        return;
+      }
+
+      setCricketMessage(message);
+    };
+
+    const queueNextBall = () => {
+      cricketState.phase = "reset";
+      addCricketTimer(() => {
+        if (cricketState.active) {
+          startCricketDelivery();
+        }
+      }, 1400);
+    };
+
+    const showCricketLoss = (message) => {
+      cancelCricketFrame();
+      clearCricketTimers();
+      cricketState.active = false;
+      cricketState.phase = "lost";
+      cricketState.batLocked = true;
+      recordCricketBall();
+      setBallPosition(cricketPositions.wicket);
+      strikerWickets.classList.add("is-hit", "is-broken");
+      batButton.disabled = true;
+      setCricketMessage(message);
+      cricketResult.hidden = false;
+      addCricketTimer(() => cricketBall.classList.add("is-hidden"), 180);
+      restartCricket.focus({ preventScroll: true });
+    };
+
+    const playBatSwing = () => {
+      cricketGround.classList.add("is-swinging");
+      addCricketTimer(() => {
+        cricketGround.classList.remove("is-swinging");
+      }, 180);
+    };
+
+    const animateGroundShot = (power, fieldChanged) => {
+      cricketState.phase = "fielding";
+      cricketGround.classList.add("is-running");
+      setCricketMessage("The ball rolls on the ground. Snail fielders chase while both ants run.");
+
+      const side = Math.random() > 0.5 ? 1 : -1;
+      const target = {
+        x: clamp(50 + side * randomBetween(18, 43), 8, 92),
+        y: randomBetween(46, 86)
+      };
+      const startBall = { ...cricketState.ballPosition };
+      const distance = Math.hypot(target.x - startBall.x, target.y - startBall.y);
+      const duration = Math.min(4200, 620 + distance * 30 + power * 900 + randomBetween(-180, 620));
+      const runCycle = cricketState.score >= 50 ? 560 : 640;
+      const fielderStarts = snailFielders.map((fielder) => ({
+        x: parseFloat(fielder.style.left) || 50,
+        y: parseFloat(fielder.style.top) || 50
+      }));
+      const nearestFielderIndex = fielderStarts.reduce((nearestIndex, position, index) => {
+        const nearestPosition = fielderStarts[nearestIndex];
+        const distance = Math.hypot(target.x - position.x, target.y - position.y);
+        const nearestDistance = Math.hypot(target.x - nearestPosition.x, target.y - nearestPosition.y);
+        return distance < nearestDistance ? index : nearestIndex;
+      }, 0);
+      const fielderSpeeds = fielderStarts.map((position, index) => {
+        const distanceFromBall = Math.hypot(startBall.x - position.x, startBall.y - position.y);
+        const nearestBoost = index === nearestFielderIndex ? 1.8 : 1.0;
+        const rangeBoost = clamp(distanceFromBall / 30, 0.35, 1.25);
+        return (0.18 + index * 0.025) * nearestBoost * rangeBoost;
+      });
+      const finalizer = (elapsed, stoppedMessage) => {
+        const effectiveElapsed = clamp(elapsed, 0, duration);
+        const projectedRuns = Math.max(1, Math.floor(effectiveElapsed / runCycle));
+        const runs = Math.min(4, projectedRuns);
+        const cappedAtFour = projectedRuns > 4;
+
+        cricketState.frame = 0;
+        cricketGround.classList.remove("is-running");
+        setPosition(strikerAnt, cricketPositions.striker);
+        setPosition(runnerAnt, cricketPositions.runner);
+
+        const runLabel = runs === 1 ? "1 run" : `${runs} runs`;
+        const resultMessage = stoppedMessage
+          ? stoppedMessage
+          : cappedAtFour
+            ? "They had time for more, but ground shots count as 4."
+            : `The batters complete ${runLabel}.`;
+
+        addRuns(runs, withFieldMessage(resultMessage, fieldChanged));
+        queueNextBall();
+      };
+      const startedAt = performance.now();
+      let chaseStopped = false;
+
+      cancelCricketFrame();
+
+      const step = (now) => {
+        if (!cricketState.active) {
+          return;
+        }
+
+        const elapsed = now - startedAt;
+        const progress = clamp(elapsed / duration, 0, 1);
+        const eased = easeOut(progress);
+        setBallPosition(interpolate(startBall, target, eased));
+
+        snailFielders.forEach((fielder, index) => {
+          const current = {
+            x: parseFloat(fielder.style.left) || fielderStarts[index].x,
+            y: parseFloat(fielder.style.top) || fielderStarts[index].y
+          };
+          const moved = moveToward(current, cricketState.ballPosition, fielderSpeeds[index]);
+          setPosition(fielder, moved.position);
+
+          if (!chaseStopped && moved.reached) {
+            chaseStopped = true;
+            cricketBall.classList.remove("is-airborne");
+            setBallPosition(moved.position);
+            setCricketMessage(`Stopped by a snail fielder from the ${index === nearestFielderIndex ? "nearest" : "cover"} side.`);
+            addCricketTimer(() => finalizer(elapsed, `Stopped by a snail fielder. ${index === nearestFielderIndex ? "The nearest fielder reacted first." : "Another fielder helped cover the ball."}`), 220);
+          }
+        });
+
+        if (chaseStopped) {
+          cricketState.frame = 0;
+          return;
+        }
+
+        const cycle = Math.floor(elapsed / runCycle);
+        const runProgress = (elapsed % runCycle) / runCycle;
+        const strikerFrom = cycle % 2 === 0 ? cricketPositions.striker : cricketPositions.runner;
+        const strikerTo = cycle % 2 === 0 ? cricketPositions.runner : cricketPositions.striker;
+        const runnerFrom = cycle % 2 === 0 ? cricketPositions.runner : cricketPositions.striker;
+        const runnerTo = cycle % 2 === 0 ? cricketPositions.striker : cricketPositions.runner;
+
+        setPosition(strikerAnt, interpolate(strikerFrom, strikerTo, runProgress));
+        setPosition(runnerAnt, interpolate(runnerFrom, runnerTo, runProgress));
+
+        if (progress < 1) {
+          cricketState.frame = window.requestAnimationFrame(step);
+          return;
+        }
+
+        finalizer(elapsed);
+      };
+
+      cricketState.frame = window.requestAnimationFrame(step);
+    };
+
+    const handleCricketHit = (timingDifference) => {
+      cancelCricketFrame();
+      cricketState.batLocked = true;
+      const fieldChanged = recordCricketBall();
+      const power = clamp(1 - timingDifference / 0.2, 0.25, 1);
+
+      animateGroundShot(power, fieldChanged);
+    };
+
+    const releaseCricketBall = () => {
+      if (!cricketState.active) {
+        return;
+      }
+
+      cricketState.phase = "delivery";
+      cricketState.batLocked = false;
+      cricketState.deliveryStart = performance.now();
+      cricketState.deliveryDuration = 1180 * bowlingSpeedFactor();
+      const delivery = selectCricketDelivery();
+      setCricketMessage(`Time the Bat button. The snail bowls a ${delivery.name}.`);
+
+      const from = cricketPositions.bowlingLine;
+      const to = cricketPositions.wicket;
+
+      const step = (now) => {
+        if (!cricketState.active || cricketState.phase !== "delivery") {
+          return;
+        }
+
+        const progress = clamp((now - cricketState.deliveryStart) / cricketState.deliveryDuration, 0, 1);
+        const curve = delivery.offset(progress);
+        setBallPosition({
+          x: from.x + curve,
+          y: from.y + (to.y - from.y) * progress
+        });
+
+        if (progress < 1) {
+          cricketState.frame = window.requestAnimationFrame(step);
+          return;
+        }
+
+        showCricketLoss("You Lose - the ball hit the wicket.");
+      };
+
+      cricketState.frame = window.requestAnimationFrame(step);
+    };
+
+    function startCricketDelivery() {
+      if (!cricketState.active) {
+        return;
+      }
+
+      const speed = bowlingSpeedFactor();
+      resetCricketActors();
+      cricketState.phase = "runup";
+      cricketState.batLocked = false;
+      setCricketMessage("The snail bowler moves backward with the ball.");
+
+      animateCricketPositions([
+        { element: snailBowler, from: cricketPositions.bowlerStart, to: cricketPositions.bowlerBack },
+        { element: cricketBall, from: cricketPositions.bowlerStart, to: cricketPositions.bowlerBack }
+      ], 520 * speed, () => {
+        if (!cricketState.active) {
+          return;
+        }
+
+        setCricketMessage("The snail bowler moves forward to the white line.");
+        animateCricketPositions([
+          { element: snailBowler, from: cricketPositions.bowlerBack, to: cricketPositions.bowlingLine },
+          { element: cricketBall, from: cricketPositions.bowlerBack, to: cricketPositions.bowlingLine }
+        ], 820 * speed, () => {
+          if (!cricketState.active) {
+            return;
+          }
+
+          setCricketMessage("The snail stops at the white line and throws.");
+          addCricketTimer(releaseCricketBall, 180 * speed);
+        });
+      });
+    }
+
+    const startCricketGame = () => {
+      clearCricketTimers();
+      cricketState.active = true;
+      cricketState.phase = "ready";
+      cricketState.score = 0;
+      cricketState.balls = 0;
+      cricketState.halfCenturyShown = false;
+      cricketState.batLocked = false;
+      cricketState.fieldSetIndex = 0;
+      cricketState.currentDelivery = null;
+      applyCricketFieldSet();
+      hideCricketResult();
+      resetCricketActors();
+      updateCricketScore();
+      setCricketMessage("Tap Bat when the ball reaches the ant batter.");
+      addCricketTimer(startCricketDelivery, 500);
+    };
+
+    const stopCricketGame = () => {
+      cricketState.active = false;
+      cricketState.phase = "idle";
+      clearCricketTimers();
+      cancelCricketFrame();
+    };
+
+    const openCricketGame = () => {
+      cricketDialog.classList.remove("is-closing");
+
+      if (typeof cricketDialog.showModal === "function" && !cricketDialog.open) {
+        cricketDialog.showModal();
+      } else {
+        cricketDialog.setAttribute("open", "");
+      }
+
+      startCricketGame();
+      addCricketTimer(() => batButton.focus({ preventScroll: true }), 120);
+    };
+
+    const closeCricketGame = () => {
+      stopCricketGame();
+      cricketDialog.classList.add("is-closing");
+      window.setTimeout(() => {
+        cricketDialog.classList.remove("is-closing");
+
+        if (typeof cricketDialog.close === "function" && cricketDialog.open) {
+          cricketDialog.close();
+        } else {
+          cricketDialog.removeAttribute("open");
+        }
+      }, 160);
+    };
+
+    const handleBatPress = () => {
+      if (!cricketState.active) {
+        return;
+      }
+
+      playBatSwing();
+
+      if (cricketState.phase !== "delivery") {
+        setCricketMessage("The ant batter swings, but the ball is not there yet.");
+        return;
+      }
+
+      if (cricketState.batLocked) {
+        return;
+      }
+
+      const progress = clamp((performance.now() - cricketState.deliveryStart) / cricketState.deliveryDuration, 0, 1);
+      const timingDifference = Math.abs(progress - cricketState.hitProgress);
+
+      const contactWindow = 0.22;
+
+      if (timingDifference <= contactWindow) {
+        handleCricketHit(timingDifference);
+        return;
+      }
+
+      const message = progress < cricketState.hitProgress
+        ? "Too early. The ant swings and misses."
+        : "Too late. The ball is already past the bat.";
+
+      cricketState.batLocked = true;
+      setCricketMessage(`${message} It keeps going toward the wicket.`);
+    };
+
+    document.querySelectorAll("[data-cricket-card]").forEach((trigger) => {
+      trigger.addEventListener("click", openCricketGame);
+      trigger.addEventListener("keydown", (event) => {
+        if (event.target !== trigger) {
+          return;
+        }
+
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          openCricketGame();
+        }
+      });
+    });
+
+    document.querySelectorAll("[data-cricket-launch]").forEach((trigger) => {
+      trigger.addEventListener("click", (event) => {
+        event.stopPropagation();
+        openCricketGame();
+      });
+    });
+
+    batButton.addEventListener("click", handleBatPress);
+    restartCricket.addEventListener("click", () => {
+      startCricketGame();
+      batButton.focus({ preventScroll: true });
+    });
+    closeCricket.addEventListener("click", closeCricketGame);
+
+    cricketDialog.addEventListener("click", (event) => {
+      if (event.target === cricketDialog) {
+        closeCricketGame();
+      }
+    });
+
+    cricketDialog.addEventListener("cancel", (event) => {
+      event.preventDefault();
+      closeCricketGame();
+    });
   </script>
 </body>
 </html>
+
+
